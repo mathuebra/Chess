@@ -1,20 +1,20 @@
 package Chess.Java;
 
 public class Rook extends Piece{
-    public Rook (Color color) {
-        super(color);
+    public Rook (Color color, Square square) {
+        super(color, square);
     }
 
     @Override
-    public boolean canMove(Board board, Square start, Square end) {
+    public boolean canMove(Board board, Square end) {
 
         // Torres não podem se mover na diagonal
-        if (start.getX() != end.getX() && start.getY() != end.getY()) {
+        if (this.currentSquare.getX() != end.getX() && this.currentSquare.getY() != end.getY()) {
             return false;
         }
 
         // Não pode ir para a casa que já está
-        if(start.getX() == end.getX() && start.getY() == end.getY()) {
+        if(this.currentSquare.getX() == end.getX() && this.currentSquare.getY() == end.getY()) {
             return false;
         }
 
@@ -24,16 +24,18 @@ public class Rook extends Piece{
         }
 
         // Verifica se há peças no caminho
-        for (int i = start.getX(); i < end.getX(); i++) {
-            if (board.getSquare(i, start.getY()).isOccupied()) {
+        for (int i = this.currentSquare.getX(); i < end.getX(); i++) {
+            if (board.getSquare(i, this.currentSquare.getY()).isOccupied()) {
                 return false;
             }
         }
-        for (int i = start.getY(); i < end.getY(); i++) {
-            if (board.getSquare(start.getX(), i).isOccupied()) {
+        for (int i = this.currentSquare.getY(); i < end.getY(); i++) {
+            if (board.getSquare(this.currentSquare.getX(), i).isOccupied()) {
                 return false;
             }
         }
+
+        this.currentSquare = end;
 
         return true;
     }
