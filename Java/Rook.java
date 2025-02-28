@@ -22,16 +22,24 @@ public class Rook extends Piece{
         if (end.getPiece() != null && end.getPiece().getColor() == this.getColor()) {
             return false;
         }
-
+        
         // Verifica se há peças no caminho
-        for (int i = this.currentSquare.getX(); i < end.getX(); i++) {
+        // Vamos confiar que isso aqui da certo
+        if (this.currentSquare.getX() == end.getX()) {
+            int startY = Math.min(this.currentSquare.getY(), end.getY());
+            int endY = Math.max(this.currentSquare.getY(), end.getY());
+            for (int i = startY + 1; i < endY; i++) {
+            if (board.getSquare(this.currentSquare.getX(), i).isOccupied()) {
+                return false;
+            }
+            }
+        } else if (this.currentSquare.getY() == end.getY()) {
+            int startX = Math.min(this.currentSquare.getX(), end.getX());
+            int endX = Math.max(this.currentSquare.getX(), end.getX());
+            for (int i = startX + 1; i < endX; i++) {
             if (board.getSquare(i, this.currentSquare.getY()).isOccupied()) {
                 return false;
             }
-        }
-        for (int i = this.currentSquare.getY(); i < end.getY(); i++) {
-            if (board.getSquare(this.currentSquare.getX(), i).isOccupied()) {
-                return false;
             }
         }
 

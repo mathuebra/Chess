@@ -19,6 +19,8 @@ public class King extends Piece{
             this.currentSquare = end;
             return true;
         }
+
+        throw new IllegalStateException("Movimentação do rei deu ERRO!");
     }
 
 }

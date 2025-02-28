@@ -19,6 +19,10 @@ public abstract class Piece {
         return color;
     }
 
+    public Square getCurrentSquare() {
+        return currentSquare;
+    }
+
     public abstract boolean canMove(Board board, Square end);
 
 }

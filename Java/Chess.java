@@ -15,8 +15,10 @@ public class Chess {
 
 
         System.out.println("digite posicao");
-        // String
-        // TODO
+        String movement = scanner.nextLine();
+        String[] movementArray = movement.split(" ");
+        board.movePiece(board, movementArray[0], movementArray[1]);
+
         
 
         /*while(!board.gameEnd()){

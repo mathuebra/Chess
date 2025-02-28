@@ -42,8 +42,12 @@ public class Board {
     }
 
 
-    public void movePiece(String piece, String square) {
+    public void movePiece(Board board, String piece, String square) {
 
+        String oi = new String("oiiiiiiiiiiiiiiiii");
+
+        blackPieces.get(piece).canMove(board, );
+        
         
     }
 
