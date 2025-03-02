@@ -23,6 +23,18 @@ public abstract class Piece {
         return currentSquare;
     }
 
+    public void setCurrentSquare(Square currentSquare) {
+        this.currentSquare = currentSquare;
+    }
+
     public abstract boolean canMove(Board board, Square end);
+
+    protected boolean isMoveToSameColorPiece(Square end) {
+        return end.getPiece() != null && end.getPiece().getColor() == this.getColor();
+    }
+
+    protected boolean isMoveToSameSquare(Square end) {
+        return this.currentSquare.getX() == end.getX() && this.currentSquare.getY() == end.getY();
+    }
 
 }

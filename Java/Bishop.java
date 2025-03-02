@@ -16,12 +16,12 @@ public class Bishop extends Piece{
         }
 
         // Não pode ir para a casa que já está
-        if(this.currentSquare.getX() == end.getX() && this.currentSquare.getY() == end.getY()) {
+        if (isMoveToSameSquare(end)) {
             return false;
         }
 
         // Não pode ir para uma casa que já tem uma peça da mesma cor
-        if (end.getPiece() != null && end.getPiece().getColor() == this.getColor()) {
+        if (isMoveToSameColorPiece(end)) {
             return false;
         }
 

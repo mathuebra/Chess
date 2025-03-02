@@ -10,7 +10,12 @@ public class Pawn extends Piece{
     public boolean canMove(Board board, Square end) {
         
         // Não pode ir para a casa que já está
-        if (this.currentSquare.getX() == end.getX() && this.currentSquare.getY() == end.getY()) {
+        if (isMoveToSameSquare(end)) {
+            return false;
+        }
+
+        // Não pode ir para uma casa que já tem uma peça da mesma cor
+        if (isMoveToSameColorPiece(end)) {
             return false;
         }
 
