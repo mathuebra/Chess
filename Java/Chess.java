@@ -25,6 +25,6 @@ public class Chess {
 
 
         }*/
-
+        scanner.close();
     }
 }

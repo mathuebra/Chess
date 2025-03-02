@@ -1,7 +1,6 @@
 package Chess.Java;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Board {
     private Square[][] squares;
@@ -44,9 +43,8 @@ public class Board {
 
     public void movePiece(Board board, String piece, String square) {
 
-        String oi = new String("oiiiiiiiiiiiiiiiii");
-
-        blackPieces.get(piece).canMove(board, );
+        // Alterei o this.getSquare(0, 0), verificar se está certo
+        //blackPieces.get(piece).canMove(board, this.getSquare(0, 0));
         
         
     }
