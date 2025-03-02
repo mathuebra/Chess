@@ -9,36 +9,23 @@ public class Queen extends Piece{
     @Override
     public boolean canMove(Board board, Square end) {
 
-        // Não pode ir para a casa que já está
-        if(this.currentSquare.getX() == end.getX() && this.currentSquare.getY() == end.getY()) {
-            return false;
+        // Rainha não precisa de verificação, basta identificar se o movimento é diagonal ou reto
+        // e instanciar as peças correspondentes para verificar se o movimento é válido
+        int xMove = Math.abs(this.currentSquare.getX() - end.getX());
+        int yMove = Math.abs(this.currentSquare.getY() - end.getY());
+
+        // Se o movimento for diagonal
+        if (xMove == yMove) {
+            Bishop moveTest = new Bishop(this.getColor(), this.currentSquare);
+            return moveTest.canMove(board, end);
+
+        // Se o movimento for reto
+        } else if (xMove == 0 || yMove == 0) {
+            Rook moveTest = new Rook(this.getColor(), this.currentSquare);
+            return moveTest.canMove(board, end);
         }
 
-        // Não pode ir para uma casa que já tem uma peça da mesma cor
-        if (end.getPiece() != null && end.getPiece().getColor() == this.getColor()) {
-            return false;
-        }
-
-        // Verifica se há peças no caminho horizontal ou vertical
-        for (int i = this.currentSquare.getX(); i < end.getX(); i++) {
-            if (board.getSquare(i, this.currentSquare.getY()).isOccupied()) {
-                return false;
-            }
-        }
-        for (int i = this.currentSquare.getY(); i < end.getY(); i++) {
-            if (board.getSquare(this.currentSquare.getX(), i).isOccupied()) {
-                return false;
-            }
-        }
-
-        // Verifica se há peças no caminho diagonal, analisando a direção da movimentação
-        int xDirection = this.currentSquare.getX() < end.getX() ? 1 : -1;
-        int yDirection = this.currentSquare.getY() < end.getY() ? 1 : -1;
-        for (int i = 1; i < Math.abs(this.currentSquare.getX() - end.getX()); i++) {
-            if (board.getSquare(this.currentSquare.getX() + i * xDirection, this.currentSquare.getY() + i * yDirection).isOccupied()) {
-                return false;
-            }
-        }
+        throw new IllegalStateException("Movimentação da rainha deu ERRO!"); 
     }
     
 }

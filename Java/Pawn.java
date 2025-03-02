@@ -51,7 +51,7 @@ public class Pawn extends Piece{
             }
         }
 
-        throw new IllegalStateException("Movimentação do peão deu voltei ERRO!");
+        throw new IllegalStateException("Movimentação do peão deu ERRO!");
     }
     
 }
